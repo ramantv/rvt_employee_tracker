@@ -364,8 +364,8 @@ function addRole() {
 
 // Exits the application
 function quit() {
-  console.log("Goodbye.\nHave a nice day.");
   connection.end();
+  console.log("****** Goodbye! ***** \n");
 }
 
 // Starts the application
@@ -375,17 +375,15 @@ function init() {
       {
         type: "list",
         choices: [
+          "View all departments",
+          "View all roles",
           "View all employees",
-          "View all employees by department",
-          "View all employees by manager",
+          "Add a department",
+          "Add a role",
           "Add an employee",
-          "Delete an employee",
           "Update an employee's role",
           "Update an employee's manager",
-          "View all departments",
-          "Add a department",
-          "View all roles",
-          "Add a role",
+          "Delete an employee",
           new inquirer.Separator(),
           "Quit",
           new inquirer.Separator(),
