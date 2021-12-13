@@ -17,7 +17,7 @@ This application is a command-line based content management system which can be 
 ![Employee Tracker Screenshot](./images/rvt_all_employees.png)
 
 ## Video Walkthrough 
-[Employee Tracker Video Walkthrough](https://drive.google.com/xxxxx)
+[Employee Tracker Video Walkthrough](https://drive.google.com/file/d/1d0M8-waiDQuKCaPNIPLLNmoAmfgL8SRw/view)
 
 ## Setup
 * Clone GitHub repository (https://github.com/ramantv/rvt_employee_tracker)
