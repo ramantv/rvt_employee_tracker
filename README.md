@@ -20,7 +20,7 @@ This application is a command-line based content management system which can be 
 ![View Department Budget Screenshot](./images/rvt_view_department_budget.png)
 
 ## Video Walkthrough 
-[Employee Tracker Video Walkthrough](https://drive.google.com/file/d/1d0M8-waiDQuKCaPNIPLLNmoAmfgL8SRw/view)
+[Employee Tracker Video Walkthrough](https://www.youtube.com/watch?v=bb4UYMW24zc)
 
 ## Setup
 * Clone GitHub repository (https://github.com/ramantv/rvt_employee_tracker)
