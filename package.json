@@ -1,11 +1,11 @@
 {
   "name": "rvt-employee-tracker",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A command-line application for managing employee data",
+  "main": "app.js",
   "scripts": {
-    "test": "jest",
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,6 @@
   "homepage": "https://github.com/ramantv/rvt_employee_tracker#readme",
   "dependencies": {
     "console.table": "^0.10.0",
-    "express": "^4.17.1",
     "inquirer": "^8.2.0",
     "mysql2": "^2.3.3"
   }

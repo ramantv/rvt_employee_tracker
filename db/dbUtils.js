@@ -1,31 +1,31 @@
 const mysql = require('mysql2')
-const promisemysql = require('mysql2/promise');
+//const promisemysql = require('mysql2/promise');
 
 function getDepartments() {
-    return connection.promise().query("SELECT * FROM departments")
+    return dbConnection.promise().query("SELECT * FROM departments")
   };
   
   function getRoles() {
-    return connection.promise().query("SELECT * FROM roles")
+    return dbConnection.promise().query("SELECT * FROM roles")
   };
   
   function getEmployees () {
-    return connection.promise().query("SELECT * FROM employees")
+    return dbConnection.promise().query("SELECT * FROM employees")
   };
 
-const connection = mysql.createConnection({
+const dbConnection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: 'root',
+    password: 'password',
     database: 'employee_tracker_db',
   });
 
-  connection.connect(function(err) {
+  dbConnection.connect(function(err) {
       if (err) throw err;
-      console.log("Connected to database.")
+      console.log("Connected to database employee_tracker_db.")
   });
 
-module.exports = { connection, getDepartments,
+module.exports = { dbConnection, getDepartments,
     getRoles,
     getEmployees }
