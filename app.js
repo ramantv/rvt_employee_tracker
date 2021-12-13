@@ -339,7 +339,7 @@ function getDepartmentBudget(departmentId, name) {
 function calculateDepartmentBudget(data, name) {
   let departmentBudget = 0;
   for (let i = 0; i < data.length; i++) {
-    departmentBudget += data[i].salary;
+    departmentBudget += parseFloat(data[i].salary);
   }
   //departmentBudget = departmentBudget.toFixed(2);
   let dollarUSLocale = Intl.NumberFormat('en-US');
