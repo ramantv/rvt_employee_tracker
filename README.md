@@ -14,7 +14,10 @@
 This application is a command-line based content management system which can be used to manage employee data in an organization. It allows the user to perform all CRUD operations including adding, viewing, and modifying department, role, and employee data. The user can select these options from a menu. The user will be led through prompts that help to add, view, or modify the selected data.
 
 ## Screenshot
-![Employee Tracker Screenshot](./images/rvt_all_employees.png)
+![Employee Tracker Main Menu Screenshot](./images/rvt_employee_tracker_main.png)
+![View All Departments and Roles Screenshot](./images/rvt_all_roles_and_departments.png)
+![View All Employees Screenshot](./images/rvt_all_employees.png)
+![View Department Budget Screenshot](./images/rvt_view_department_budget.png)
 
 ## Video Walkthrough 
 [Employee Tracker Video Walkthrough](https://drive.google.com/file/d/1d0M8-waiDQuKCaPNIPLLNmoAmfgL8SRw/view)

@@ -458,6 +458,8 @@ function init() {
           "View all roles",
           "View all employees",
           "View Department Budget",
+          "View all employees by department",
+          "View all employees by manager",
           "Add a department",
           "Add a role",
           "Add an employee",
@@ -468,7 +470,7 @@ function init() {
           "Quit",
           new inquirer.Separator(),
         ],
-        pageSize: 14,
+        pageSize: 15,
       },
     ])
     .then(({ userInput }) => {
