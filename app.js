@@ -1,12 +1,12 @@
-// DEPENDENCIES
+// Imports
 const inquirer = require("inquirer");
 const mysql = require("mysql2");
 const cTable = require("console.table");
 
-// MAKE CONNECTION TO THE DATABASE
+// Database connection
 const connection = mysql.createConnection({
   host: "localhost",
-  // Your port; if not 3306
+  // DD port #; if not 3306
   port: 3306,
   // Your username
   user: "root",
@@ -282,6 +282,83 @@ function viewDepartments() {
   });
 }
 
+function viewDepartmentBudget() {
+  const departmentsData = [];
+  const departmentsNames = [];
+  getDepartmentsAsync()
+    .then((data) => {
+      for (let i = 0; i < data.length; i++) {
+        departmentsData.push(data[i]);
+        departmentsNames.push(data[i].name);
+      }
+      viewBudgetQuestions(departmentsData, departmentsNames);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+function viewBudgetQuestions(departmentsData, departmentsNames) {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "name",
+        message: "Which department budget would you like to see?",
+        choices: departmentsNames,
+      },
+    ])
+    .then((answers) => {
+      let departmentId;
+      for (let i = 0; i < departmentsData.length; i++) {
+        if (answers.name === departmentsData[i].name) {
+          departmentId = departmentsData[i].id;
+        }
+      }
+      getDepartmentBudget(departmentId, answers.name);
+    });
+}
+
+function getDepartmentBudget(departmentId, name) {
+  connection.query(
+    `SELECT r.salary
+                    FROM employees e
+                    JOIN roles r
+                    ON e.role_id = r.id
+                    JOIN departments d
+                    ON r.department_id = d.id 
+                    WHERE ?`,
+    { "d.id": departmentId },
+    (err, data) => {
+      if (err) throw err;
+      calculateDepartmentBudget(data, name);
+    }
+  );
+}
+
+function calculateDepartmentBudget(data, name) {
+  let departmentBudget = 0;
+  for (let i = 0; i < data.length; i++) {
+    departmentBudget += data[i].salary;
+  }
+  //departmentBudget = departmentBudget.toFixed(2);
+  let dollarUSLocale = Intl.NumberFormat('en-US');
+  var dBudget = dollarUSLocale.format(departmentBudget);
+  console.log(`\nThe budget for ${name} is $${dBudget}`);
+  init();
+}
+
+function getDepartmentsAsync() {
+  return new Promise((resolve, reject) => {
+    connection.query(`SELECT * FROM departments`, (err, data) => {
+      if (err) {
+        return reject(err);
+      }
+      return resolve(data);
+    });
+  });
+}
+
 // Add a department
 function addDepartment() {
   inquirer
@@ -374,10 +451,13 @@ function init() {
     .prompt([
       {
         type: "list",
+        name: "userInput",
+        message: "What would you like to do?",
         choices: [
           "View all departments",
           "View all roles",
           "View all employees",
+          "View Department Budget",
           "Add a department",
           "Add a role",
           "Add an employee",
@@ -388,14 +468,22 @@ function init() {
           "Quit",
           new inquirer.Separator(),
         ],
-        message: "What would you like to do?",
-        name: "userInput",
+        pageSize: 14,
       },
     ])
     .then(({ userInput }) => {
       switch (userInput) {
+        case "View all departments":
+          viewDepartments();
+          break;
+        case "View all roles":
+          viewRoles();
+          break;
         case "View all employees":
           viewAllEmployees();
+          break;
+        case "View Department Budget":
+          viewDepartmentBudget();
           break;
         case "View all employees by department":
           viewAllEmployeesByDepartment();
@@ -415,14 +503,8 @@ function init() {
         case "Update an employee's manager":
           updateManager();
           break;
-        case "View all departments":
-          viewDepartments();
-          break;
         case "Add a department":
           addDepartment();
-          break;
-        case "View all roles":
-          viewRoles();
           break;
         case "Add a role":
           addRole();
